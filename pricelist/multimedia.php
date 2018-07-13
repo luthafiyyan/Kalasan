@@ -5,6 +5,7 @@ include("../phplogin/koneksi.php"); //include config file
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Kalasan Multimedia Pricelist</title>
 <link href="style/style.css" rel="stylesheet" type="text/css">
@@ -162,6 +163,8 @@ if(isset($_SESSION["products"])){
   <li><a class="kategori" href="index.php">Semua</a></li>
   <li><a class="active" href="multimedia.php">Multimedia</a></li>
   <li><a class="kategori" href="lighting.php">Lighting</a></li>
+  <li><a class="kategori" href="sound.php">Sound</a></li>
+  <li><a class="kategori" href="genset.php">Genset</a></li>
   <li><a class="kategori" href="view_cart.php">Order</a></li>
 </ul>
 <br>
