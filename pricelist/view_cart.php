@@ -61,9 +61,12 @@ if(isset($_SESSION["products"]) && count($_SESSION["products"])>0){
 	echo $cart_box;
 	
 }else{
-	echo "Keranjang Anda Kosong !";
+	echo "<center>Keranjang Anda Kosong !</center>";
 }
 ?>
-<center><a href="https://web.whatsapp.com/send?phone=62811286810&amp;text=Halo%20gan,%20Saya%20mau%20order....."><img src="https://lh3.googleusercontent.com/-N23V4qsFKs8/WMV9mGK5x5I/AAAAAAAAAPQ/BcC6qzLzJtcqKUWAX5TXX8KxuwDX5JXAgCLcB/h90/Button%2BChat%2Bvia%2BWhatsapp.png" style="    max-width: 30%;" / /></a></center>
+<center><a href="https://api.whatsapp.com/send?phone=62811286810&amp;text=Halo%20gan,%20Saya%20mau%20order....."><img src="images/wa.jpg" style="    max-width: 30%;" / /></a><br>
+	<a style="font-family: calibri; font-size: 10pt;"href="https://web.whatsapp.com/send?phone=62811286810&amp;text=Halo%20gan,%20Saya%20mau%20order.....">Klik Di Sini Untuk Order Via Web</a>
+</center>
+
 </body>
 </html>
