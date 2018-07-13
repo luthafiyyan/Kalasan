@@ -127,12 +127,12 @@ li a {
 }
 
 li a:hover:not(.active) {
-    background-color: #ddd;
+    background-color: #EAEAEA;
 }
 
 li a.active {
     color: white;
-    background-color: #4CAF50;
+    background-color: #FD7013;
 }
 </style>
 </head>
@@ -159,10 +159,10 @@ if(isset($_SESSION["products"])){
 </div>
 <br>
 <ul>
-  <li><a class="active" href="#home">Home</a></li>
-  <li><a href="#news">Multimedia</a></li>
-  <li><a href="#contact">Lighting</a></li>
-  <li><a href="view_cart.php">Order</a></li>
+  <li><a class="active" href="index.php">Semua</a></li>
+  <li><a class="kategori" href="multimedia.php">Multimedia</a></li>
+  <li><a class="kategori" href="lighting.php">Lighting</a></li>
+  <li><a class="kategori" href="view_cart.php">Order</a></li>
 </ul>
 <br>
 
