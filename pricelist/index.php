@@ -62,6 +62,79 @@ $(document).ready(function(){
 
 });
 </script>
+<style type="text/css">
+    table {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+  text-shadow: 1px 1px 0px #fff;
+  background: #eaebec;
+  border: #ccc 1px solid;
+}
+ 
+table th {
+  padding: 5px 75px;
+  border-left:1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background: #ededed;
+}
+ 
+table th:first-child{  
+  border-left:none;  
+}
+ 
+table tr {
+  text-align: center;
+ 
+}
+ 
+table td:first-child {
+  text-align: center;
+  
+  border-left: 0;
+}
+ 
+table td {
+  padding: 5px 15px;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  background: #fafafa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+  background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+}
+
+</style>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+</style>
 </head>
 <body >
 <div align="center">
@@ -84,12 +157,19 @@ if(isset($_SESSION["products"])){
     <div id="shopping-cart-results">
     </div>
 </div>
-
+<br>
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">Multimedia</a></li>
+  <li><a href="#contact">Lighting</a></li>
+  <li><a href="view_cart.php">Order</a></li>
+</ul>
+<br>
 
 <?php
 //List products from database
-$results = $conn->query("SELECT id, product_name, product_desc, product_price FROM products_list");
-$bil = 1;
+$results = $conn->query("SELECT * FROM products_list");
+$no = 1;
 
 if (!$results){
     printf("Error: %s\n", $conn->error);
@@ -113,7 +193,7 @@ $products_list .= <<<EOT
        <th>Aksi</th>
     </tr>
     <tr>
-        <td>{$bil}</td>
+        <td>$no</td>
         <td class="form-control" style="width:80%;">{$row["product_name"]}</td>
         <td class="form-control" style="width:30%;"></td>
         <td class="form-control" style="width:60%;">Rp {$row["product_price"]}</td>
@@ -130,7 +210,7 @@ $products_list .= <<<EOT
 </table>
 </form>
 EOT;
-
+$no++;
 }
 $products_list .= '</ul></div>';
 
