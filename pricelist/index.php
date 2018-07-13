@@ -9,9 +9,6 @@ include("../phplogin/koneksi.php"); //include config file
 <title>Kalasan Multimedia Pricelist</title>
 <link href="style/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-
-
-
 <script>
 $(document).ready(function(){	
 		$(".form-item").submit(function(e){
@@ -35,21 +32,21 @@ $(document).ready(function(){
 			e.preventDefault();
 		});
 
-	//Show Items in Cart
+	//Menampilkan Data Keranjang
 	$( ".cart-box").click(function(e) { //when user clicks on cart box
 		e.preventDefault(); 
-		$(".shopping-cart-box").fadeIn(); //display cart box
+		$(".shopping-cart-box").fadeIn(); //menampilkan cart box
 		$("#shopping-cart-results").html('<img src="images/ajax-loader.gif">'); //show loading image
 		$("#shopping-cart-results" ).load( "cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
 	});
 	
-	//Close Cart
+	//Tutup Keranjang
 	$( ".close-shopping-cart-box").click(function(e){ //user click on cart box close link
 		e.preventDefault(); 
 		$(".shopping-cart-box").fadeOut(); //close cart-box
 	});
 	
-	//Remove items from cart
+	//Hapus Item dari keranjang
 	$("#shopping-cart-results").on('click', 'a.remove-item', function(e) {
 		e.preventDefault(); 
 		var pcode = $(this).attr("data-code"); //get product code
@@ -162,6 +159,8 @@ if(isset($_SESSION["products"])){
   <li><a class="active" href="index.php">Semua</a></li>
   <li><a class="kategori" href="multimedia.php">Multimedia</a></li>
   <li><a class="kategori" href="lighting.php">Lighting</a></li>
+  <li><a class="kategori" href="sound.php">Sound</a></li>
+  <li><a class="kategori" href="genset.php">Genset</a></li>
   <li><a class="kategori" href="view_cart.php">Order</a></li>
 </ul>
 <br>
@@ -200,9 +199,7 @@ $products_list .= <<<EOT
         <td class="form-control" style="width:30%;">{$row["product_desc"]}</td>
         <td class="form-control" style="width:30%;"><input name="product_qty" required></input></td>
         <td><button type="submit">Tambah</button></td>    
-    </tr>
-
-        
+    </tr>       
     
     <input name="id" type="hidden" value="{$row["id"]}">
     
@@ -216,8 +213,6 @@ $products_list .= '</ul></div>';
 
 echo $products_list;
 ?>
-
-
 
 </body>
 </html>
