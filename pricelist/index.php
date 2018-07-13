@@ -9,12 +9,15 @@ include("../phplogin/koneksi.php"); //include config file
 <title>Kalasan Multimedia Pricelist</title>
 <link href="style/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+
+
+
 <script>
 $(document).ready(function(){	
 		$(".form-item").submit(function(e){
 			var form_data = $(this).serialize();
 			var button_content = $(this).find('button[type=submit]');
-			button_content.html('Adding...'); //Loading button text 
+			button_content.html('Menambahkan...'); //Loading button text 
 
 			$.ajax({ //make ajax request to cart_process.php
 				url: "cart_process.php",
@@ -23,8 +26,8 @@ $(document).ready(function(){
 				data: form_data
 			}).done(function(data){ //on Ajax success
 				$("#cart-info").html(data.items); //total items in cart-info element
-				button_content.html('Add to Cart'); //reset button text to original text
-				alert("Item added to Cart!"); //alert user
+				button_content.html('Tambah'); //reset button text to original text
+				alert("Barang Berhasil Ditambahkan !"); //alert user
 				if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
 					$(".cart-box").trigger( "click" ); //trigger click to update the cart box.
 				}
@@ -60,7 +63,7 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body>
+<body >
 <div align="center">
 <h3>Kalasan Multimedia Pricelist</h3>
 </div>
@@ -76,17 +79,20 @@ if(isset($_SESSION["products"])){
 </a>
 
 <div class="shopping-cart-box">
-<a href="#" class="close-shopping-cart-box" >Close</a>
-<h3>Your Item Cart</h3>
+<a href="#" class="close-shopping-cart-box" >Tutup</a>
+<h3>Keranjang Anda</h3>
     <div id="shopping-cart-results">
     </div>
 </div>
 
+
 <?php
 //List products from database
-$results = $conn->query("SELECT * FROM products_list");
+$results = $conn->query("SELECT id, product_name, product_desc, product_price FROM products_list");
+$bil = 1;
+
 if (!$results){
-    printf("Error: %s\n", $mysqli_conn->error);
+    printf("Error: %s\n", $conn->error);
     exit;
 }
 
@@ -95,26 +101,32 @@ $products_list =  '<ul class="products-wrp">';
 
 while($row = $results->fetch_assoc()) {
 $products_list .= <<<EOT
-<table class="item-box" cellpadding="2" >
+<form class="form-item" >
+	<table border="0" cellpadding="1" cellspacing="3" class="item-box" >
     <tr>
-       <th >No</th>
-       <th >Nama</th>
-       <th >Speck</th>
-       <th >Harga</th>
-       <th >Keterangan</th>
-       <th >Qty</th>
-       <th >Aksi</th>
+       <th>No</th>
+       <th class="form-control" style="width:80%;">Nama</th>
+       <th class="form-control" style="width:30%;">Speck</th>
+       <th class="form-control" style="width:60%;">Harga</th>
+       <th class="form-control" style="width:30%;">Keterangan</th>
+       <th class="form-control" style="width:30%;">Qty</th>
+       <th>Aksi</th>
     </tr>
-    <tr>        
-        <td class=mdl-data-table__cell--non-numeric>$no</td>
-                        <td class=mdl-data-table__cell--non-numeric>$row[product_name]</td>                       
-                        <td class=mdl-data-table__cell--non-numeric>$row[product_speck]</td>
-                        <td class=mdl-data-table__cell--non-numeric>Rp $row[product_price]</td>
-                        <td class=mdl-data-table__cell--non-numeric>$row[product_desc]</td>
-                        <td align=center><input name="product_qty" ></td>                        
-        <td align=center><button type="submit">Tambah</button></td>    
-    </tr>    
+    <tr>
+        <td>{$bil}</td>
+        <td class="form-control" style="width:80%;">{$row["product_name"]}</td>
+        <td class="form-control" style="width:30%;"></td>
+        <td class="form-control" style="width:60%;">Rp {$row["product_price"]}</td>
+        <td class="form-control" style="width:30%;">{$row["product_desc"]}</td>
+        <td class="form-control" style="width:30%;"><input name="product_qty" required></input></td>
+        <td><button type="submit">Tambah</button></td>    
+    </tr>
+
+        
+    
     <input name="id" type="hidden" value="{$row["id"]}">
+    
+
 </table>
 </form>
 EOT;
@@ -124,5 +136,8 @@ $products_list .= '</ul></div>';
 
 echo $products_list;
 ?>
+
+
+
 </body>
 </html>
