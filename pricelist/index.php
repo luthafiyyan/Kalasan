@@ -5,9 +5,15 @@ include("../phplogin/koneksi.php"); //include config file
 <!DOCTYPE HTML>
 <html>
 <head>
+<link rel="icon" type="image/png" href="images/kalasanlogo.png">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Kalasan Multimedia Pricelist</title>
 <link href="style/style.css" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 <script>
 $(document).ready(function(){	
@@ -60,7 +66,8 @@ $(document).ready(function(){
 });
 </script>
 <style type="text/css">
-    table {
+table {
+  margin: auto;
   font-family: Arial, Helvetica, sans-serif;
   color: #666;
   text-shadow: 1px 1px 0px #fff;
@@ -108,7 +115,7 @@ ul {
     padding: 0;
     overflow: hidden;
     border: 1px solid #e7e7e7;
-    background-color: #f3f3f3;
+    background-color: #102E37;
 }
 
 li {
@@ -117,13 +124,14 @@ li {
 
 li a {
     display: block;
-    color: #666;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li a:hover:not(.active) {
+	color: black;
     background-color: #EAEAEA;
 }
 
@@ -131,13 +139,27 @@ li a.active {
     color: white;
     background-color: #FD7013;
 }
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #102E37;
+   color: white;
+   text-align: center;
+   font-family: Calibri;
+}
+
+
 </style>
 </head>
 <body >
-<div align="center">
-<h3>Kalasan Multimedia Pricelist</h3>
-</div>
 
+
+<div align="left">
+<img src="images/kalasanpjg.png"  height="70" align="left">
+</div>
+<div align="center"><h3>Kalasan Multimedia Pricelist</h3></div>
 <a href="#" class="cart-box" id="cart-info" title="View Cart">
 <?php 
 if(isset($_SESSION["products"])){
@@ -199,7 +221,9 @@ $products_list .= <<<EOT
         <td class="form-control" style="width:30%;">{$row["product_desc"]}</td>
         <td class="form-control" style="width:30%;"><input name="product_qty" required></input></td>
         <td><button type="submit">Tambah</button></td>    
-    </tr>       
+    </tr>
+
+        
     
     <input name="id" type="hidden" value="{$row["id"]}">
     
@@ -213,6 +237,10 @@ $products_list .= '</ul></div>';
 
 echo $products_list;
 ?>
+
+<div class="footer">
+  <p>Kalasan Multimedia | 2018</p>
+</div>
 
 </body>
 </html>
