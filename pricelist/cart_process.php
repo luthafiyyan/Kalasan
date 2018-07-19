@@ -58,7 +58,7 @@ if(isset($_POST["load_cart"]) && $_POST["load_cart"]==1)
 
 			
 			
-			$cart_box .=  "<li> $product_name (Qty : $product_qty  ) &mdash; ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
+			$cart_box .=  "<li> $product_name (Qty : $product_qty  ) &mdash; Rp ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
 			$subtotal = ($product_price * $product_qty);
 			$total = ($total + $subtotal);
 		}
